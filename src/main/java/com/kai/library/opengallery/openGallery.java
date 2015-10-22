@@ -14,6 +14,7 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 /**
  * Created by kevin on 2015/10/7.
@@ -35,6 +36,7 @@ public class openGallery extends Activity {
     private void openGalleryIntent(){
         Intent intent = new Intent();
         intent.setType("image/*");
+        intent.putExtra("crop", "true");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent,
                 "Select Picture"), REQUESTCODE);
@@ -53,9 +55,16 @@ public class openGallery extends Activity {
                         finish();
                     }else{
                         Uri uri = data.getData();
-                        Log.d("GalleryIntent", "get path:" + getPath(getApplicationContext(),uri));
                         Intent intent = new Intent();
-                        intent.putExtra("path", getPath(getApplicationContext(),uri));
+                        String path = "";
+                        try {
+                            path = getPath(getApplicationContext(),uri);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                            Toast.makeText(this,"not support this app",Toast.LENGTH_LONG).show();
+                            path = "";
+                        }
+                        intent.putExtra("path", path);
                         setResult(Activity.RESULT_OK, intent);
                         finish();
                     }
