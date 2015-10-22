@@ -31,6 +31,9 @@ public class openGallery extends Activity {
         if(getIntent().hasExtra("")){
         }
         openGalleryIntent();
+        while (true){
+            System.out.print("aaaa");
+        }
     }
 
     private void openGalleryIntent(){
