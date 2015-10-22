@@ -76,6 +76,9 @@ public class openGallery extends Activity {
                     setResult(Activity.RESULT_CANCELED);
                     finish();
                 }
+                if(true){
+                    return;
+                }
                 break;
         }
     }
