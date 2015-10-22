@@ -40,6 +40,9 @@ public class openGallery extends Activity {
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent,
                 "Select Picture"), REQUESTCODE);
+        if(true){
+            System.out.print("B");
+        }
     }
 
     @Override
